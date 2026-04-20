@@ -224,7 +224,7 @@ const { event: ev } = Astro.props;
 </BaseLayout>
 
 <script>
-  const APPS_SCRIPT_URL = import.meta.env.PUBLIC_APPS_SCRIPT_URL || '';
+  const APPS_SCRIPT_URL = import.meta.env.STANDUPINDOJAKSEL_PUBLIC_APPS_SCRIPT_URL || '';
 
   const form = document.getElementById('reg-form') as HTMLFormElement | null;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
@@ -249,7 +249,7 @@ const { event: ev } = Astro.props;
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({
           ...data,
-          _token: import.meta.env.PUBLIC_FORM_SECRET,
+          _token: import.meta.env.STANDUPINDOJAKSEL_PUBLIC_FORM_SECRET,
         }),
       });
       const json = await res.json();
