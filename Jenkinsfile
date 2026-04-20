@@ -21,8 +21,8 @@ pipeline {
         stage('Build') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'STANDUPINDOJAKSEL_PUBLIC_APPS_SCRIPT_URL', variable: 'PUBLIC_STANDUPINDOJAKSEL_APPS_SCRIPT_URL'),
-                    string(credentialsId: 'STANDUPINDOJAKSEL_PUBLIC_FORM_SECRET', variable: 'PUBLIC_STANDUPINDOJAKSEL_FORM_SECRET')
+                    string(credentialsId: 'PUBLIC_STANDUPINDOJAKSEL_APPS_SCRIPT_URL', variable: 'PUBLIC_STANDUPINDOJAKSEL_APPS_SCRIPT_URL'),
+                    string(credentialsId: 'PUBLIC_STANDUPINDOJAKSEL_FORM_SECRET', variable: 'PUBLIC_STANDUPINDOJAKSEL_FORM_SECRET')
                 ]) {
                     sh '''
                         echo "PUBLIC_STANDUPINDOJAKSEL_APPS_SCRIPT_URL=$PUBLIC_STANDUPINDOJAKSEL_APPS_SCRIPT_URL" > .env
