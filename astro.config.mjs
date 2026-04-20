@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://standupindojaksel.com',
+  site: 'http://72.62.127.138/',
   vite: {
     plugins: [tailwindcss()]
   },
