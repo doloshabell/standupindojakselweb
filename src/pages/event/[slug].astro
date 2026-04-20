@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Ribbon from '../../components/Ribbon.astro';
+import events from '../../data/events.json';
+import { Calendar, MapPin, Clock, Tag } from 'lucide-astro';
+
+export function getStaticPaths() {
+  return events.map(ev => ({ params: { slug: ev.slug }, props: { event: ev } }));
+}
+
+const { event: ev } = Astro.props;
+---
+
+<BaseLayout title={ev.title} description={ev.description}>
+
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-8">
+    <a href="/event" class="kicker text-caption hover:text-accent transition-colors block mb-8"
+       data-t="event.backLabel">← Kembali ke Event</a>
+  </div>
+
+  <!-- Event Hero -->
+  <section class="border-b-2 border-black">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-12 flex flex-col items-center text-center">
+
+      <!-- Logo -->
+      <img src={ev.thumbnail} alt={ev.title}
+           class="w-64 md:w-80 h-auto object-contain" />
+
+      <!-- Kicker + badge -->
+      <div class="flex items-center gap-3 mb-3">
+        <p class="kicker text-accent">{ev.kicker}</p>
+        {ev.registrationOpen && (
+          <span class="kicker bg-accent text-white px-3 py-1 rounded-full" data-t="event.openLabel">
+            PENDAFTARAN DIBUKA
+          </span>
+        )}
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-display font-semibold text-[clamp(2.5rem,7vw,5rem)] leading-none tracking-[-2px] text-ink mb-2">
+        {ev.title}
+      </h1>
+      <p class="font-display text-2xl text-caption mb-6">{ev.subtitle}</p>
+      <div class="w-10 h-0.5 bg-accent mb-6"></div>
+
+      <!-- Meta -->
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6">
+        <p class="kicker text-caption flex items-center gap-1.5"><Calendar size={13} />{ev.dateRange}</p>
+        <p class="kicker text-caption flex items-center gap-1.5"><MapPin size={13} />{ev.location}</p>
+      </div>
+
+      <p class="font-body text-base leading-relaxed text-caption max-w-xl">{ev.description}</p>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="border-b border-black">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <Ribbon label="TAHAPAN KOMPETISI" tKey="event.timelineLabel" />
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-0 py-8">
+        {ev.timeline.map((stage, i) => (
+          <div class={[
+            'pb-8 md:pb-0',
+            i < ev.timeline.length - 1 ? 'border-b md:border-b-0 md:border-r border-hairline mb-8 md:mb-0 md:pr-6' : '',
+            i > 0 ? 'md:pl-6' : '',
+          ].join(' ')}>
+            <div class="w-8 h-0.5 bg-accent mb-3"></div>
+            <p class="kicker-bold text-accent mb-1">{stage.stage}</p>
+            <p class="timestamp mb-3">{stage.date}</p>
+            <p class="font-body text-sm leading-relaxed text-ink mb-2">{stage.desc}</p>
+            <p class="kicker text-caption flex items-center gap-1.5"><MapPin size={13} />{stage.location}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Judges -->
+  <section class="border-b border-black">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <Ribbon label="JURI" tKey="event.judgesLabel" />
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-0 py-8">
+        {ev.judges.map((judge, i) => (
+          <div class={[
+            'pb-6 md:pb-0 text-center',
+            i < ev.judges.length - 1 ? 'border-r border-hairline pr-4 md:pr-6' : '',
+            i > 0 ? 'pl-4 md:pl-6' : '',
+          ].join(' ')}>
+            <div class="w-16 h-16 bg-ink/10 rounded-full mx-auto mb-3 flex items-center justify-center">
+              <p class="font-display text-xl text-caption">{judge.name.charAt(0)}</p>
+            </div>
+            <p class="font-ui text-sm font-semibold text-ink leading-tight mb-1">{judge.name}</p>
+            <p class="kicker text-caption text-center leading-snug">{judge.credential}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Form -->
+  {ev.registrationOpen && (
+    <section class="border-b border-black" id="daftar">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+        <Ribbon label="DAFTAR AUDISI" tKey="event.registrationTitle" />
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-0 py-10">
+          <div class="md:border-r border-hairline md:pr-10 mb-8 md:mb-0">
+            <h2 class="font-display text-4xl text-ink mb-4" data-t="event.registrationTitle">
+              DAFTAR AUDISI
+            </h2>
+            <p class="font-body text-sm leading-relaxed text-ink mb-6" data-t="event.registrationDesc">
+              Isi formulir di bawah untuk mendaftar audisi Jas Merah 6.
+              Pendaftaran gratis dan terbuka untuk umum.
+            </p>
+            <div class="flex flex-col gap-3 font-body text-sm text-ink">
+              <p class="flex items-center gap-2"><Calendar size={14} />Audisi: <strong>2 Mei 2026</strong></p>
+              <p class="flex items-center gap-2"><MapPin size={14} />Moving Space, Kemang</p>
+              <p class="flex items-center gap-2"><Clock size={14} />Durasi materi: <strong>3 menit</strong></p>
+              <p class="flex items-center gap-2"><Tag size={14} />Pendaftaran <strong>GRATIS</strong></p>
+            </div>
+          </div>
+
+          <div class="md:col-span-2 md:pl-10">
+            <!-- Success/Error messages (hidden by default) -->
+            <div id="form-success" class="hidden bg-black text-white p-6 mb-6">
+              <p class="font-display text-3xl mb-2" data-t="form.successTitle">PENDAFTARAN BERHASIL!</p>
+              <p class="font-body text-sm" data-t="form.successMsg">
+                Terima kasih telah mendaftar. Kami akan menghubungi kamu via WhatsApp untuk informasi selanjutnya.
+              </p>
+            </div>
+            <div id="form-error" class="hidden border-2 border-accent p-4 mb-6">
+              <p class="font-ui text-sm text-accent font-bold" id="error-msg" data-t="form.errorMsg">
+                Gagal mengirim. Periksa koneksi internet kamu dan coba lagi.
+              </p>
+            </div>
+
+            <form id="reg-form" class="flex flex-col gap-5" novalidate>
+
+              <!-- Nama -->
+              <div>
+                <label class="field-label" data-t="form.nama">NAMA LENGKAP</label>
+                <input type="text" name="nama" required class="field-input"
+                       placeholder="Masukkan nama lengkap kamu"
+                       data-t-placeholder="form.namaPlaceholder" />
+              </div>
+
+              <!-- WhatsApp -->
+              <div>
+                <label class="field-label" data-t="form.wa">NOMOR WHATSAPP</label>
+                <input type="tel" name="whatsapp" required class="field-input"
+                       placeholder="Contoh: 08123456789"
+                       data-t-placeholder="form.waPlaceholder" />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label class="field-label" data-t="form.email">EMAIL</label>
+                <input type="email" name="email" required class="field-input"
+                       placeholder="email@kamu.com"
+                       data-t-placeholder="form.emailPlaceholder" />
+              </div>
+
+              <!-- Domisili -->
+              <div>
+                <label class="field-label" data-t="form.domisili">DOMISILI</label>
+                <input type="text" name="domisili" required class="field-input"
+                       placeholder="Kota/Kabupaten tempat tinggal"
+                       data-t-placeholder="form.domisiliPlaceholder" />
+              </div>
+
+              <!-- Pengalaman -->
+              <div>
+                <label class="field-label" data-t="form.pengalaman">PENGALAMAN STAND-UP</label>
+                <select name="pengalaman" required class="field-input">
+                  <option value="">-- Pilih --</option>
+                  <option value="Belum pernah tampil">Belum pernah tampil</option>
+                  <option value="Pernah open mic 1–5 kali">Pernah open mic 1–5 kali</option>
+                  <option value="Rutin tampil di open mic">Rutin tampil di open mic</option>
+                </select>
+              </div>
+
+              <!-- Link Video -->
+              <div>
+                <label class="field-label" data-t="form.linkVideo">LINK VIDEO / INSTAGRAM (OPSIONAL)</label>
+                <input type="url" name="linkVideo" class="field-input"
+                       placeholder="https://instagram.com/akunmu"
+                       data-t-placeholder="form.linkVideoPlaceholder" />
+              </div>
+
+              <!-- Sumber -->
+              <div>
+                <label class="field-label" data-t="form.sumber">DARI MANA KAMU TAHU JAS MERAH 6?</label>
+                <select name="sumber" required class="field-input">
+                  <option value="">-- Pilih --</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Teman / Kenalan">Teman / Kenalan</option>
+                  <option value="Langsung dari komunitas">Langsung dari komunitas</option>
+                  <option value="Lainnya">Lainnya</option>
+                </select>
+              </div>
+
+              <!-- Agreement -->
+              <div class="flex items-start gap-3">
+                <input type="checkbox" name="agreement" id="agreement" required
+                       class="mt-1 w-4 h-4 accent-accent flex-shrink-0" />
+                <label for="agreement" class="font-body text-sm text-ink leading-relaxed cursor-pointer"
+                       data-t="form.agreement">
+                  Saya menyetujui bahwa data yang saya isi adalah benar dan bersedia mengikuti seluruh rangkaian kompetisi.
+                </label>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" id="submit-btn" class="btn-accent self-start" data-t="form.submit">
+                KIRIM PENDAFTARAN
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+</BaseLayout>
+
+<script>
+  const APPS_SCRIPT_URL = import.meta.env.PUBLIC_APPS_SCRIPT_URL || '';
+
+  const form = document.getElementById('reg-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+  const errorMsg = document.getElementById('error-msg');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    submitBtn!.disabled = true;
+    submitBtn!.textContent = 'MENGIRIM...';
+    successEl?.classList.add('hidden');
+    errorEl?.classList.add('hidden');
+
+    const data = Object.fromEntries(new FormData(form));
+
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          ...data,
+          _token: import.meta.env.PUBLIC_FORM_SECRET,
+        }),
+      });
+      const json = await res.json();
+
+      if (json.status === 'duplicate') {
+        errorEl?.classList.remove('hidden');
+        if (errorMsg) errorMsg.setAttribute('data-t', 'form.duplicateMsg');
+        if (errorMsg) errorMsg.textContent = json.message || 'Nomor WhatsApp ini sudah terdaftar.';
+        submitBtn!.disabled = false;
+        submitBtn!.textContent = 'KIRIM PENDAFTARAN';
+      } else {
+        form.classList.add('hidden');
+        successEl?.classList.remove('hidden');
+        successEl?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    } catch {
+      errorEl?.classList.remove('hidden');
+      if (errorMsg) errorMsg.textContent = 'Gagal mengirim. Periksa koneksi internet kamu dan coba lagi.';
+      submitBtn!.disabled = false;
+      submitBtn!.textContent = 'KIRIM PENDAFTARAN';
+    }
+  });
+</script>

@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import events from '../../data/events.json';
+import { Calendar, MapPin } from 'lucide-astro';
+---
+
+<BaseLayout title="Event" description="Event dan kompetisi Standupindo Jakarta Selatan">
+
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+    <div class="border-b border-hairline py-5">
+      <p class="section-label text-caption" data-t="event.ribbonPage">EVENT</p>
+    </div>
+
+    <div class="py-8 flex flex-col gap-0">
+      {events.map((ev, i) => (
+        <div class={`grid grid-cols-1 md:grid-cols-3 gap-0 ${i > 0 ? 'border-t border-hairline pt-10 mt-10' : 'pb-10'}`}>
+
+          <!-- Thumbnail -->
+          <div class="md:border-r border-hairline pr-0 md:pr-8 mb-6 md:mb-0">
+            <div class="aspect-[16/9] bg-ink overflow-hidden flex items-center justify-center">
+              <img src={ev.thumbnail} alt={ev.title}
+                   class="w-full h-full object-contain p-6" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="md:col-span-2 md:pl-8 flex flex-col justify-center">
+            <div class="flex items-center gap-3 mb-2">
+              <p class="kicker text-accent">{ev.kicker}</p>
+              {ev.registrationOpen && (
+                <span class="kicker bg-accent text-white px-3 py-1 rounded-full" data-t="event.openLabel">
+                  PENDAFTARAN DIBUKA
+                </span>
+              )}
+            </div>
+            <h2 class="font-display font-semibold text-[clamp(2rem,5vw,3.5rem)] leading-none tracking-[-1px] text-ink mb-1">
+              {ev.title}
+            </h2>
+            <p class="font-display text-xl text-caption mb-5">{ev.subtitle}</p>
+            <div class="flex flex-col gap-1.5 mb-4">
+              <p class="kicker text-caption flex items-center gap-1.5"><Calendar size={13} />{ev.dateRange}</p>
+              <p class="kicker text-caption flex items-center gap-1.5"><MapPin size={13} />{ev.location}</p>
+            </div>
+            <p class="font-body text-sm leading-relaxed text-caption mb-7">{ev.description}</p>
+            <div class="flex flex-wrap gap-3">
+              {ev.registrationOpen && (
+                <a href={`/event/${ev.slug}`} class="btn-accent" data-t="event.registerCta">
+                  DAFTAR SEKARANG
+                </a>
+              )}
+              <a href={`/event/${ev.slug}`} class="btn-primary">LIHAT DETAIL →</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</BaseLayout>

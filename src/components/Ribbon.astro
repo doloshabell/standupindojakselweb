@@ -1,0 +1,17 @@
+---
+interface Props {
+  label: string;
+  tKey?: string;
+  light?: boolean;
+}
+const { label, tKey, light = false } = Astro.props;
+---
+
+<div class="py-5">
+  <p
+    class={`section-label ${light ? 'text-white/40' : 'text-caption'}`}
+    {...(tKey ? { 'data-t': tKey } : {})}
+  >
+    {label}
+  </p>
+</div>

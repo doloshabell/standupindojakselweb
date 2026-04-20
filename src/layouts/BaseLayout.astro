@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { translations } from '../i18n/translations';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Komunitas Stand-Up Comedy Jakarta Selatan' } = Astro.props;
+const t = translations;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Standupindo Jakarta Selatan</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/logojaksel.png" type="image/png" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <script define:vars={{ t }}>
+      const TRANSLATIONS = t;
+
+      function setLang(lang) {
+        document.querySelectorAll('[data-t]').forEach(el => {
+          const key = el.getAttribute('data-t');
+          const val = key.split('.').reduce((obj, k) => obj?.[k], TRANSLATIONS[lang]);
+          if (val !== undefined) el.textContent = val;
+        });
+
+        document.querySelectorAll('[data-t-placeholder]').forEach(el => {
+          const key = el.getAttribute('data-t-placeholder');
+          const val = key.split('.').reduce((obj, k) => obj?.[k], TRANSLATIONS[lang]);
+          if (val !== undefined) el.placeholder = val;
+        });
+
+        document.querySelectorAll('[data-t-href]').forEach(el => {
+          const key = el.getAttribute('data-t-href');
+          const val = key.split('.').reduce((obj, k) => obj?.[k], TRANSLATIONS[lang]);
+          if (val !== undefined) el.href = val;
+        });
+
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+      }
+
+      function initLang() {
+        const saved = localStorage.getItem('lang') || 'id';
+        if (saved !== 'id') setLang(saved);
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === saved);
+        });
+      }
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+      });
+
+      document.addEventListener('DOMContentLoaded', initLang);
+    </script>
+  </body>
+</html>

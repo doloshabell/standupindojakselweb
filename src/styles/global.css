@@ -1,1 +1,258 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
 @import "tailwindcss";
+
+@theme {
+  /* All Inter — four weights, one face */
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body:    "Inter", system-ui, sans-serif;
+  --font-ui:      "Inter", system-ui, sans-serif;
+  --font-mono:    "Inter", system-ui, sans-serif;
+
+  /* Retro Culture Palette */
+  --color-canvas:      #f5f0e8;
+  --color-maroon:      #1e0a0a;
+  --color-ink:         #1a1a1a;
+  --color-black:       #000000;
+  --color-white:       #ffffff;
+  --color-accent:      #cc2200;
+  --color-accent-dark: #a81c00;
+  --color-caption:     #6b6b6b;
+  --color-muted:       #9a9a9a;
+  --color-hairline:    #e8e2d8;
+  --color-footer-bg:   #1e0a0a;
+}
+
+/* ─── Base ─────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #f5f0e8;
+  color: #1a1a1a;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Typography Utilities ──────────────────────────────── */
+
+/* Section label — Mintlify style: Inter 500 uppercase tracked */
+.section-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.65px;
+  line-height: 1.5;
+}
+
+/* Kicker — same as section-label, kept for backward compat */
+.kicker {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.65px;
+  line-height: 1.5;
+}
+
+.timestamp {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9a9a9a;
+}
+
+/* ─── Display Typography ────────────────────────────────── */
+.display-hero {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -1.28px;
+}
+
+.display-section {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+}
+
+/* ─── Buttons — Full Pill (Mintlify signature) ──────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1e0a0a;
+  color: #f5f0e8;
+  border: none;
+  border-radius: 9999px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 24px;
+  box-shadow: rgba(0,0,0,0.06) 0px 1px 2px;
+  transition: opacity 150ms;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #1a1a1a;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 9999px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 9px 24px;
+  transition: opacity 150ms, background 150ms;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-ghost:hover { background: rgba(0,0,0,0.04); }
+
+.btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #f5f0e8;
+  border: 1px solid rgba(245,240,232,0.25);
+  border-radius: 9999px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 9px 24px;
+  transition: opacity 150ms, background 150ms;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-ghost-light:hover { background: rgba(245,240,232,0.08); }
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #cc2200;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 24px;
+  box-shadow: rgba(0,0,0,0.06) 0px 1px 2px;
+  transition: background 150ms;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-accent:hover { background: #a81c00; }
+
+/* ─── Cards — Mintlify system ───────────────────────────── */
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: rgba(0,0,0,0.03) 0px 2px 4px;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+.card:hover {
+  border-color: rgba(0,0,0,0.09);
+  box-shadow: rgba(0,0,0,0.06) 0px 4px 12px;
+}
+
+.card-featured {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: rgba(0,0,0,0.03) 0px 2px 4px;
+}
+
+/* Cards on dark maroon sections */
+.card-dark {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color 150ms;
+}
+.card-dark:hover { border-color: rgba(255,255,255,0.15); }
+
+/* ─── Form Fields ─────────────────────────────────────────── */
+.field-input {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #1a1a1a;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+.field-input:focus {
+  border-color: #cc2200;
+  box-shadow: 0 0 0 3px rgba(204,34,0,0.12);
+}
+.field-input::placeholder { color: #9a9a9a; }
+.field-input:disabled { color: #9a9a9a; background: #f5f5f5; }
+
+.field-label {
+  display: block;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
+}
+
+/* ─── Lang Toggle ─────────────────────────────────────────── */
+.lang-btn {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  transition: all 120ms;
+}
+.lang-btn.active {
+  background: #1e0a0a;
+  color: #f5f0e8;
+  border-color: #1e0a0a;
+}
+.lang-btn:not(.active) {
+  background: transparent;
+  color: #9a9a9a;
+  border-color: rgba(0,0,0,0.1);
+}
+.lang-btn:not(.active):hover {
+  border-color: rgba(0,0,0,0.25);
+  color: #1a1a1a;
+}
+
+/* ─── Story tile hover ───────────────────────────────────── */
+.story-tile a:hover .tile-headline { color: #cc2200; }

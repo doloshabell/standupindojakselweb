@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import news from '../../data/news.json';
+
+export function getStaticPaths() {
+  return news.map(n => ({ params: { slug: n.slug }, props: { article: n } }));
+}
+
+const { article } = Astro.props;
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('id-ID', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+}
+
+const paragraphs = article.content.split('\n\n').filter(Boolean);
+---
+
+<BaseLayout title={article.title} description={article.excerpt}>
+
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-8">
+    <a href="/news" class="kicker text-caption hover:text-accent transition-colors block mb-8"
+       data-t="news.backLabel">← Kembali ke News</a>
+
+    <div class="border-b border-hairline pb-8 mb-8">
+      <p class="kicker text-accent mb-3">{article.kicker}</p>
+      <h1 class="font-display font-semibold text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-[-1px] text-ink mb-4">
+        {article.title}
+      </h1>
+      <p class="timestamp">{formatDate(article.date)}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+      <div class="md:col-span-2 md:border-r border-hairline md:pr-12">
+        <div class="aspect-[16/9] bg-ink/8 overflow-hidden mb-8 flex items-center justify-center">
+          <img src={article.thumbnail} alt={article.title}
+               class="w-full h-full object-cover" loading="eager" />
+        </div>
+
+        <div class="font-body text-base leading-relaxed text-ink flex flex-col gap-5">
+          {paragraphs.map(p => <p>{p}</p>)}
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="md:pl-12 pt-10 md:pt-0">
+        <p class="section-label text-caption mb-5">ARTIKEL LAINNYA</p>
+        <div class="flex flex-col gap-0">
+          {news
+            .filter(n => n.slug !== article.slug)
+            .slice(0, 3)
+            .map((n, i) => (
+              <a href={`/news/${n.slug}`}
+                 class={`block py-4 ${i > 0 ? 'border-t border-hairline' : ''} group`}>
+                <p class="kicker text-accent mb-1">{n.kicker}</p>
+                <p class="font-ui text-sm font-semibold text-ink group-hover:text-accent transition-colors leading-tight">
+                  {n.title}
+                </p>
+                <p class="timestamp mt-1">{formatDate(n.date)}</p>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+</BaseLayout>

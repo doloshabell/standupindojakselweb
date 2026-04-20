@@ -1,0 +1,53 @@
+[
+  {
+    "slug": "jas-merah-6",
+    "title": "JAS MERAH 6",
+    "subtitle": "Jakarta Selatan Mencari Juara Hahaha",
+    "subtitleEn": "South Jakarta Seeking the Hahaha Champion",
+    "kicker": "KOMPETISI",
+    "kickerEn": "COMPETITION",
+    "dateRange": "2 Mei — 1 Agustus 2026",
+    "location": "Moving Space, Kemang, Jakarta Selatan",
+    "description": "JAS MERAH 6 adalah kompetisi stand-up comedy internal Standupindo Jaksel. Selama 8 minggu, 12 finalis terbaik akan beradu tawa setiap Sabtu malam dengan tema dan tantangan berbeda, hingga tersisa 3 grand finalis.",
+    "descriptionEn": "JAS MERAH 6 is Standupindo Jaksel's internal stand-up comedy competition. Over 8 weeks, 12 finalists will battle for laughs every Saturday night with different themes and challenges, until 3 grand finalists remain.",
+    "thumbnail": "/logojasmerah6.png",
+    "registrationOpen": true,
+    "timeline": [
+      {
+        "stage": "AUDISI",
+        "date": "2 Mei 2026",
+        "desc": "Terbuka untuk umum, target 40–50 peserta. Materi 3 menit.",
+        "descEn": "Open to the public, target 40–50 participants. 3-minute material.",
+        "location": "Moving Space, Kemang"
+      },
+      {
+        "stage": "KELAS COMEDY",
+        "date": "9 Mei 2026",
+        "desc": "Kelas penulisan materi, delivery, dan komunitas untuk peserta lolos audisi.",
+        "descEn": "Material writing, delivery, and community class for audition passers.",
+        "location": "Moving Space, Kemang"
+      },
+      {
+        "stage": "SHOW 1 – SHOW 6",
+        "date": "23 Mei – 27 Juni 2026",
+        "desc": "12 finalis tampil setiap Sabtu malam. Sistem gugur dengan tema berbeda tiap show.",
+        "descEn": "12 finalists perform every Saturday night. Elimination system with different themes each show.",
+        "location": "Moving Space, Kemang"
+      },
+      {
+        "stage": "GRAND FINAL",
+        "date": "1 Agustus 2026",
+        "desc": "3 grand finalis terbaik. Sistem penonton berbasis ticketing.",
+        "descEn": "3 best grand finalists. Audience ticketing system.",
+        "location": "TBC"
+      }
+    ],
+    "judges": [
+      { "name": "Virza Logika", "credential": "Juara 2 SUCI 11 Kompas TV", "credentialEn": "Runner-up SUCI 11 Kompas TV" },
+      { "name": "Popon Kerok", "credential": "Juara 1 SUCI 8 Kompas TV", "credentialEn": "Champion SUCI 8 Kompas TV" },
+      { "name": "Bonar Manalu", "credential": "Komika Nasional", "credentialEn": "National Comedian" },
+      { "name": "Andri Senopati", "credential": "Komika & Konten Kreator", "credentialEn": "Comedian & Content Creator" },
+      { "name": "Sastra Silalahi", "credential": "Komika Nasional", "credentialEn": "National Comedian" }
+    ]
+  }
+]

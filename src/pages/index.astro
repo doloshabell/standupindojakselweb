@@ -1,17 +1,176 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import komika from '../data/komika.json';
+import events from '../data/events.json';
+import { Calendar, MapPin } from 'lucide-astro';
 
+const featuredKomika = komika.slice(0, 3);
+const featuredEvent = events[0];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Tentang Komunitas" description="Standupindo Jakarta Selatan — Komunitas Stand-Up Comedy Jakarta Selatan">
+
+  <!-- ─── HERO — foto komunitas + overlay maroon, center ──── -->
+  <section class="relative overflow-hidden min-h-[85vh] flex items-center justify-center">
+    <!-- Background photo -->
+    <img src="/semuakomikajaksel.jpeg" alt=""
+         class="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
+         aria-hidden="true" />
+    <!-- Maroon silhouette overlay -->
+    <div class="absolute inset-0 bg-maroon/80" style="mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-maroon/40 via-transparent to-maroon/60"></div>
+
+    <div class="relative z-10 max-w-[1280px] mx-auto px-4 md:px-8 py-20 md:py-28 text-center flex flex-col items-center">
+      <p class="kicker text-white/50 mb-5" data-t="hero.kicker">
+        KOMUNITAS STAND-UP COMEDY JAKARTA SELATAN
+      </p>
+      <h1 class="font-display font-semibold text-[clamp(3rem,8vw,5.5rem)] leading-[1.0] tracking-[-2px] text-white mb-6"
+          data-t="hero.headline">
+        JAKARTA SELATAN<br />PUNYA KOMIKA
+      </h1>
+      <div class="w-10 h-0.5 bg-accent mb-7"></div>
+      <p class="font-body text-lg leading-relaxed text-white/65 max-w-lg mb-10" data-t="hero.deck">
+        Standupindo Jakarta Selatan adalah komunitas stand-up comedy aktif yang melahirkan komika-komika baru setiap minggunya.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/talent" class="btn-accent" data-t="hero.cta">LIHAT TALENT KAMI</a>
+        <a href="/event" class="btn-ghost-light" data-t="hero.eventCta">Lihat Event →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TENTANG KOMUNITAS — cream ────────────────────────── -->
+  <section class="bg-canvas border-b border-hairline">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="border-b border-hairline py-5">
+        <p class="section-label text-caption" data-t="about.ribbon">TENTANG KAMI</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 py-12">
+        <div class="md:col-span-2 pr-0 md:pr-12 border-r-0 md:border-r border-hairline">
+          <h2 class="font-display font-semibold text-[clamp(1.75rem,4vw,2.75rem)] leading-tight tracking-[-0.8px] text-ink mb-6"
+              data-t="about.heading">
+            KOMUNITAS YANG TUMBUH DARI PANGGUNG KECIL
+          </h2>
+          <p class="font-body text-base leading-relaxed text-ink mb-4">
+            Standupindo Jakarta Selatan adalah chapter dari komunitas stand-up comedy terbesar di Indonesia.
+            Setiap Sabtu malam, puluhan komika naik panggung di Moving Space, Kemang — dari yang baru pertama
+            kali mencoba hingga yang sudah puluhan show.
+          </p>
+          <p class="font-body text-base leading-relaxed text-ink">
+            Misi kami sederhana: melahirkan komika-komika terbaik dari Jakarta Selatan dan menghibur penonton
+            dengan tawa yang jujur.
+          </p>
+        </div>
+
+        <div class="pt-10 md:pt-0 md:pl-12 flex flex-col gap-7 justify-center">
+          {[
+            { num: '10.6K', label: 'PENGIKUT INSTAGRAM', tKey: 'about.stat1Label' },
+            { num: '4×',    label: 'OPEN MIC PER BULAN', tKey: 'about.stat2Label' },
+            { num: '2021',  label: 'TAHUN BERDIRI',      tKey: 'about.stat3Label' },
+          ].map(stat => (
+            <div class="border-l-2 border-accent pl-4">
+              <p class="font-display font-semibold text-5xl text-ink leading-none">{stat.num}</p>
+              <p class="kicker text-caption mt-1.5" data-t={stat.tKey}>{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TALENT PILIHAN — dark maroon ─────────────────────── -->
+  <section class="bg-maroon border-b border-white/10">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="border-b border-white/10 py-5 flex items-center justify-between">
+        <p class="section-label text-white/40" data-t="talent.ribbon">TALENT PILIHAN</p>
+        <a href="/talent" class="kicker text-accent hover:text-accent/80 transition-colors"
+           data-t="talent.seeAll">Lihat Semua →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 py-10">
+        {featuredKomika.map((k, i) => (
+          <div class={[
+            'pb-8 md:pb-0',
+            i < 2 ? 'md:border-r border-white/10 md:pr-8' : '',
+            i > 0 ? 'md:pl-8 border-t md:border-t-0 border-white/10 pt-8 md:pt-0' : '',
+          ].join(' ')}>
+            <a href={`/talent/${k.slug}`} class="block group">
+              <div class="aspect-[16/9] bg-white/5 overflow-hidden mb-4 flex items-center justify-center">
+                <p class="kicker text-white/20">FOTO KOMIKA</p>
+              </div>
+              <p class="kicker text-accent mb-1.5">{k.kicker}</p>
+              <h3 class="font-display font-semibold text-3xl text-white leading-tight group-hover:text-accent transition-colors">
+                {k.name}
+              </h3>
+            </a>
+            <p class="font-body text-sm text-white/40 mt-2 line-clamp-2 leading-relaxed">{k.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EVENT TERBARU — cream ─────────────────────────────── -->
+  <section class="bg-canvas border-b border-hairline">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div class="border-b border-hairline py-5 flex items-center justify-between">
+        <p class="section-label text-caption" data-t="event.ribbon">EVENT TERBARU</p>
+        <a href="/event" class="kicker text-accent hover:text-accent/80 transition-colors"
+           data-t="event.seeAll">Lihat Semua →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 py-10">
+        <div class="border-r-0 md:border-r border-hairline pr-0 md:pr-10">
+          <div class="aspect-[16/9] bg-ink overflow-hidden flex items-center justify-center">
+            <img src={featuredEvent.thumbnail} alt={featuredEvent.title}
+                 class="w-full h-full object-contain p-8" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="pl-0 md:pl-10 pt-8 md:pt-0 flex flex-col justify-center">
+          <p class="kicker text-accent mb-2">{featuredEvent.kicker}</p>
+          <h2 class="font-display font-semibold text-[clamp(2rem,5vw,3.5rem)] leading-none tracking-[-1px] text-ink mb-2">
+            {featuredEvent.title}
+          </h2>
+          <p class="font-display text-xl text-caption mb-5">{featuredEvent.subtitle}</p>
+          <div class="w-10 h-0.5 bg-hairline mb-5"></div>
+          <div class="flex flex-col gap-1.5 mb-6">
+            <p class="kicker text-caption flex items-center gap-1.5"><Calendar size={13} />{featuredEvent.dateRange}</p>
+            <p class="kicker text-caption flex items-center gap-1.5"><MapPin size={13} />{featuredEvent.location}</p>
+          </div>
+          <p class="font-body text-sm leading-relaxed text-caption mb-7">{featuredEvent.description}</p>
+          <div class="flex flex-wrap gap-3">
+            <a href={`/event/${featuredEvent.slug}`} class="btn-accent" data-t="event.registerCta">
+              DAFTAR SEKARANG
+            </a>
+            <a href="/event" class="btn-ghost" data-t="event.detailCta">Lihat Detail →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── OPEN MIC BANNER — vintage red ────────────────────── -->
+  <section class="bg-accent py-16">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8 text-center">
+      <p class="kicker text-white/60 mb-4" data-t="openmic.label">SETIAP SABTU MALAM</p>
+      <h2 class="font-display font-semibold text-[clamp(2.5rem,7vw,5rem)] leading-[1.0] tracking-[-1.5px] text-white mb-4"
+          data-t="openmic.heading">
+        OPEN MIC RUTIN
+      </h2>
+      <p class="font-body text-white/70 text-lg mb-2" data-t="openmic.place">
+        Pukul 20:00 — Moving Space, Kemang, Jakarta Selatan
+      </p>
+      <p class="font-body text-white/50 text-sm mb-10" data-t="openmic.note">
+        Gratis untuk penonton. Daftar tampil di lokasi.
+      </p>
+      <a href="https://www.instagram.com/standupindo_jaksel"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-ghost-light inline-flex" data-t="openmic.cta">
+        CEK JADWAL DI INSTAGRAM
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

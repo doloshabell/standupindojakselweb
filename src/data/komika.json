@@ -1,0 +1,132 @@
+[
+  {
+    "slug": "komika-1",
+    "name": "Komika 1",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Komika aktif sejak 2020, sudah tampil di berbagai open mic Jakarta. Dikenal dengan materi sehari-hari yang relatable dan delivery santai tapi mengena.",
+    "bioEn": "Active comedian since 2020, has performed at various Jakarta open mics. Known for relatable everyday material and a laid-back yet impactful delivery.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": ""
+    }
+  },
+  {
+    "slug": "komika-2",
+    "name": "Komika 2",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Bergabung dengan komunitas Standupindo Jaksel sejak 2021. Spesialisasi materi observasional tentang kehidupan Gen Z di Jakarta Selatan.",
+    "bioEn": "Joined the Standupindo Jaksel community since 2021. Specializes in observational material about Gen Z life in South Jakarta.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": ""
+    }
+  },
+  {
+    "slug": "komika-3",
+    "name": "Komika 3",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Finalis Jas Merah 4, komika dengan gaya storytelling yang kuat. Sering membawakan cerita tentang keluarga dan budaya pop Indonesia.",
+    "bioEn": "Jas Merah 4 finalist with a strong storytelling style. Often brings stories about family and Indonesian pop culture.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "",
+      "youtube": "#"
+    }
+  },
+  {
+    "slug": "komika-4",
+    "name": "Komika 4",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Rutin tampil di open mic Standupindo Jaksel sejak 2022. Materi andalannya berkisar tentang dunia kerja dan dinamika kantor anak muda.",
+    "bioEn": "Regular performer at Standupindo Jaksel open mics since 2022. Core material revolves around work life and young professional dynamics.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": ""
+    }
+  },
+  {
+    "slug": "komika-5",
+    "name": "Komika 5",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Komika perempuan yang dikenal dengan perspektif segar dan berani. Sudah tampil di lebih dari 30 panggung open mic di Jabodetabek.",
+    "bioEn": "Female comedian known for fresh and bold perspectives. Has performed at over 30 open mic stages across Greater Jakarta.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": "#"
+    }
+  },
+  {
+    "slug": "komika-6",
+    "name": "Komika 6",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Bergabung sejak 2023, cepat berkembang dengan materi satir sosial yang tajam. Salah satu komika paling konsisten tampil setiap Sabtu.",
+    "bioEn": "Joined in 2023 and quickly grew with sharp social satire material. One of the most consistent performers every Saturday.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": ""
+    }
+  },
+  {
+    "slug": "komika-7",
+    "name": "Komika 7",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Veteran open mic Jaksel dengan pengalaman lebih dari 3 tahun. Gaya one-liner dan punchline padat menjadi ciri khasnya di atas panggung.",
+    "bioEn": "Jaksel open mic veteran with over 3 years of experience. Dense one-liners and tight punchlines are his signature on stage.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "",
+      "youtube": "#"
+    }
+  },
+  {
+    "slug": "komika-8",
+    "name": "Komika 8",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Komika dengan latar belakang seni teater yang membawa dimensi baru dalam delivery-nya. Sering eksperimen dengan karakter dan roleplay di atas panggung.",
+    "bioEn": "Comedian with a theater background who brings a new dimension to delivery. Often experiments with characters and roleplay on stage.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": ""
+    }
+  },
+  {
+    "slug": "komika-9",
+    "name": "Komika 9",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Aktif di komunitas Standupindo Jaksel sejak 2021 dan telah menjadi mentor bagi komika baru. Materi unggulannya membahas ironi kehidupan urban.",
+    "bioEn": "Active in the Standupindo Jaksel community since 2021 and has become a mentor for new comedians. Signature material explores urban life irony.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": "#"
+    }
+  },
+  {
+    "slug": "komika-10",
+    "name": "Komika 10",
+    "photo": "/images/placeholder-komika.jpg",
+    "kicker": "KOMIKA",
+    "bio": "Pendatang baru yang meledak di scene Jaksel sejak 2023. Energi panggungnya yang tinggi dan materi absurd membuat penonton selalu terhibur.",
+    "bioEn": "Newcomer who exploded on the Jaksel scene since 2023. High stage energy and absurd material always keep the audience entertained.",
+    "social": {
+      "instagram": "#",
+      "tiktok": "#",
+      "youtube": ""
+    }
+  }
+]

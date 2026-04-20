@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Ribbon from '../../components/Ribbon.astro';
+import news from '../../data/news.json';
+
+const featured = news.find(n => n.featured) || news[0];
+const rest = news.filter(n => n.slug !== featured.slug);
+
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('id-ID', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+}
+---
+
+<BaseLayout title="News" description="Berita dan update komunitas Standupindo Jakarta Selatan">
+
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+    <Ribbon label="NEWS" tKey="news.ribbon" />
+
+    <!-- Featured -->
+    <div class="border-b border-black py-8">
+      <p class="kicker text-caption mb-4" data-t="news.featuredLabel">ARTIKEL UTAMA</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+
+        <div class="md:border-r border-hairline pr-0 md:pr-8 mb-6 md:mb-0">
+          <div class="aspect-[16/9] bg-ink/10 overflow-hidden flex items-center justify-center">
+            <img src={featured.thumbnail} alt={featured.title}
+                 class="w-full h-full object-cover" loading="eager" />
+          </div>
+        </div>
+
+        <div class="pl-0 md:pl-8 flex flex-col justify-center">
+          <p class="kicker text-accent mb-2">{featured.kicker}</p>
+          <a href={`/news/${featured.slug}`} class="group">
+            <h2 class="font-display text-4xl md:text-5xl text-ink leading-tight mb-4
+                       group-hover:text-accent transition-colors">
+              {featured.title}
+            </h2>
+          </a>
+          <p class="timestamp mb-4">{formatDate(featured.date)}</p>
+          <p class="font-body text-base leading-relaxed text-ink mb-6">{featured.excerpt}</p>
+          <a href={`/news/${featured.slug}`} class="btn-primary self-start" data-t="news.readMore">
+            Baca Selengkapnya →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rest -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 py-8">
+      {rest.map((article, i) => (
+        <div class={[
+          'story-tile pb-8 md:pb-0',
+          i < 2 ? 'md:border-r border-hairline md:pr-8' : '',
+          i > 0 ? 'md:pl-8 border-t md:border-t-0 border-hairline pt-8 md:pt-0' : '',
+        ].join(' ')}>
+          <div class="aspect-[16/9] bg-ink/10 overflow-hidden mb-4 flex items-center justify-center">
+            <img src={article.thumbnail} alt={article.title}
+                 class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <p class="kicker text-accent mb-1">{article.kicker}</p>
+          <a href={`/news/${article.slug}`}>
+            <h3 class="font-display text-2xl text-ink tile-headline transition-colors leading-tight mb-2">
+              {article.title}
+            </h3>
+          </a>
+          <p class="timestamp mb-3">{formatDate(article.date)}</p>
+          <p class="font-body text-sm text-caption leading-relaxed line-clamp-3">{article.excerpt}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</BaseLayout>
