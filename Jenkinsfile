@@ -21,12 +21,12 @@ pipeline {
         stage('Build') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'STANDUPINDOJAKSEL_PUBLIC_APPS_SCRIPT_URL', variable: 'PUBLIC_APPS_SCRIPT_URL'),
-                    string(credentialsId: 'STANDUPINDOJAKSEL_PUBLIC_FORM_SECRET', variable: 'PUBLIC_FORM_SECRET')
+                    string(credentialsId: 'STANDUPINDOJAKSEL_PUBLIC_APPS_SCRIPT_URL', variable: 'PUBLIC_STANDUPINDOJAKSEL_APPS_SCRIPT_URL'),
+                    string(credentialsId: 'STANDUPINDOJAKSEL_PUBLIC_FORM_SECRET', variable: 'PUBLIC_STANDUPINDOJAKSEL_FORM_SECRET')
                 ]) {
                     sh '''
-                        echo "PUBLIC_APPS_SCRIPT_URL=$PUBLIC_APPS_SCRIPT_URL" > .env
-                        echo "PUBLIC_FORM_SECRET=$PUBLIC_FORM_SECRET" >> .env
+                        echo "PUBLIC_STANDUPINDOJAKSEL_APPS_SCRIPT_URL=$PUBLIC_STANDUPINDOJAKSEL_APPS_SCRIPT_URL" > .env
+                        echo "PUBLIC_STANDUPINDOJAKSEL_FORM_SECRET=$PUBLIC_STANDUPINDOJAKSEL_FORM_SECRET" >> .env
                         npm run build
                     '''
                 }
