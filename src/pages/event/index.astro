@@ -17,9 +17,9 @@ import { Calendar, MapPin } from 'lucide-astro';
 
           <!-- Thumbnail -->
           <div class="md:border-r border-hairline pr-0 md:pr-8 mb-6 md:mb-0">
-            <div class="aspect-[16/9] bg-ink overflow-hidden flex items-center justify-center">
+            <div class="aspect-[16/9] overflow-hidden flex items-center justify-center">
               <img src={ev.thumbnail} alt={ev.title}
-                   class="w-full h-full object-contain p-6" loading="lazy" />
+                   class="w-full h-full object-contain" loading="lazy" />
             </div>
           </div>
 
@@ -44,7 +44,7 @@ import { Calendar, MapPin } from 'lucide-astro';
             <p class="font-body text-sm leading-relaxed text-caption mb-7">{ev.description}</p>
             <div class="flex flex-wrap gap-3">
               {ev.registrationOpen && (
-                <a href={`/event/${ev.slug}`} class="btn-accent" data-t="event.registerCta">
+                <a href={`/event/${ev.slug}#daftar`} class="btn-accent" data-t="event.registerCta">
                   DAFTAR SEKARANG
                 </a>
               )}
