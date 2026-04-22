@@ -24,6 +24,7 @@
   --color-muted:       #9a9a9a;
   --color-hairline:    #e8e2d8;
   --color-footer-bg:   #1e0a0a;
+  --color-espresso:    #2d1a08;
 }
 
 /* ─── Base ─────────────────────────────────────────────── */
@@ -256,3 +257,6 @@ body {
 
 /* ─── Story tile hover ───────────────────────────────────── */
 .story-tile a:hover .tile-headline { color: #cc2200; }
+
+/* ─── Field label on dark background ────────────────────── */
+.field-label-light { color: #f5f0e8; }

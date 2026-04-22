@@ -2,83 +2,128 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Ribbon from '../../components/Ribbon.astro';
 import events from '../../data/events.json';
-import { Calendar, MapPin, Clock, Tag } from 'lucide-astro';
+import { Calendar, MapPin, Clock, Tag, Mic, BookOpen, Camera, Laugh, Trophy } from 'lucide-astro';
 
 export function getStaticPaths() {
   return events.map(ev => ({ params: { slug: ev.slug }, props: { event: ev } }));
 }
 
 const { event: ev } = Astro.props;
+
+const stageIconMap: Record<string, any> = {
+  'AUDISI':     Mic,
+  'PEMATERIAN': BookOpen,
+  'PEMOTRETAN': Camera,
+  'SHOW 1':     Laugh,
+  'SHOW 2':     Laugh,
+  'SHOW 3':     Laugh,
+  'SHOW 4':     Laugh,
+  'SHOW 5':     Laugh,
+  'SHOW 6':     Laugh,
+  'GRAND FINAL': Trophy,
+};
 ---
 
 <BaseLayout title={ev.title} description={ev.description}>
 
-  <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-8">
-    <a href="/event" class="kicker text-caption hover:text-accent transition-colors block mb-8"
-       data-t="event.backLabel">← Kembali ke Event</a>
+  <!-- Event Hero -->
+  <section class="bg-accent">
+  <div class="max-w-[1280px] mx-auto px-4 md:px-8 pt-6 pb-2">
+    <a href="/event" class="btn-ghost-light" data-t="event.backLabel">← Kembali ke Event</a>
   </div>
 
-  <!-- Event Hero -->
-  <section class="border-b-2 border-black">
-    <div class="max-w-[1280px] mx-auto px-4 md:px-8 py-12 flex flex-col items-center text-center">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-8 pb-12 flex flex-col items-center text-center">
 
       <!-- Logo -->
       <img src={ev.thumbnail} alt={ev.title}
-           class="w-64 md:w-80 h-auto object-contain" />
+           class="w-64 md:w-80 h-auto object-contain -mb-16 -mt-8" />
 
       <!-- Kicker + badge -->
       <div class="flex items-center gap-3 mb-3">
-        <p class="kicker text-accent">{ev.kicker}</p>
+        <p class="kicker text-white/60">{ev.kicker}</p>
         {ev.registrationOpen && (
-          <span class="kicker bg-accent text-white px-3 py-1 rounded-full" data-t="event.openLabel">
+          <span class="kicker bg-white/20 text-white border border-white/40 px-3 py-1 rounded-full" data-t="event.openLabel">
             PENDAFTARAN DIBUKA
           </span>
         )}
       </div>
 
       <!-- Headline -->
-      <h1 class="font-display font-semibold text-[clamp(2.5rem,7vw,5rem)] leading-none tracking-[-2px] text-ink mb-2">
+      <h1 class="font-display font-extrabold text-[clamp(2.5rem,7vw,5rem)] leading-none tracking-[-2px] text-white mb-2">
         {ev.title}
       </h1>
-      <p class="font-display text-2xl text-caption mb-6">{ev.subtitle}</p>
-      <div class="w-10 h-0.5 bg-accent mb-6"></div>
+      <p class="font-display text-2xl text-semibold text-white/80 mb-6">{ev.subtitle}</p>
+      <div class="w-10 h-0.5 bg-white/40 mb-6"></div>
 
       <!-- Meta -->
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6">
-        <p class="kicker text-caption flex items-center gap-1.5"><Calendar size={13} />{ev.dateRange}</p>
-        <p class="kicker text-caption flex items-center gap-1.5"><MapPin size={13} />{ev.location}</p>
+        <p class="kicker text-white/80 flex items-center gap-1.5"><Calendar size={13} />{ev.dateRange}</p>
+        <p class="kicker text-white/80 flex items-center gap-1.5"><MapPin size={13} />{ev.location}</p>
       </div>
 
-      <p class="font-body text-base leading-relaxed text-caption max-w-xl">{ev.description}</p>
+      <p class="font-body text-base leading-relaxed text-white/90 max-w-xl">{ev.description}</p>
     </div>
   </section>
 
-  <!-- Timeline -->
-  <section class="border-b border-black">
+  <!-- Timeline - Horizontal Left to Right -->
+  <section class="bg-canvas border-b border-hairline">
     <div class="max-w-[1280px] mx-auto px-4 md:px-8">
-      <Ribbon label="TAHAPAN KOMPETISI" tKey="event.timelineLabel" />
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-0 py-8">
-        {ev.timeline.map((stage, i) => (
-          <div class={[
-            'pb-8 md:pb-0',
-            i < ev.timeline.length - 1 ? 'border-b md:border-b-0 md:border-r border-hairline mb-8 md:mb-0 md:pr-6' : '',
-            i > 0 ? 'md:pl-6' : '',
-          ].join(' ')}>
-            <div class="w-8 h-0.5 bg-accent mb-3"></div>
-            <p class="kicker-bold text-accent mb-1">{stage.stage}</p>
-            <p class="timestamp mb-3">{stage.date}</p>
-            <p class="font-body text-sm leading-relaxed text-ink mb-2">{stage.desc}</p>
-            <p class="kicker text-caption flex items-center gap-1.5"><MapPin size={13} />{stage.location}</p>
-          </div>
-        ))}
+      <div class="py-7 text-center">
+        <p class="font-display font-bold text-xl md:text-2xl tracking-[0.05em] uppercase text-ink" data-t="event.timelineLabel">TAHAPAN KOMPETISI</p>
+      </div>
+
+      <!-- Scrollable on mobile, full-width on desktop -->
+      <div class="overflow-x-auto pb-8 -mx-4 md:mx-0">
+        <div class="relative flex min-w-max md:min-w-0 px-4 md:px-0 pt-2">
+
+          <!-- Horizontal line through node centers (node h-14 = 56px, center = 28px = top-7) -->
+          <div class="absolute top-[calc(0.5rem+28px)] left-4 right-4 md:left-0 md:right-0 h-1 bg-ink/30 z-0 -translate-y-1/2"></div>
+
+          {ev.timeline.map((stage, i) => {
+            const StageIcon = stageIconMap[stage.stage] || Mic;
+            return (
+            <div class="relative z-10 flex flex-col items-center w-[110px] md:flex-1 px-1.5">
+              <!-- Node -->
+              <div class="w-14 h-14 rounded-full border-2 border-ink bg-canvas flex items-center justify-center mb-3 flex-shrink-0 text-ink">
+                <StageIcon size={26} />
+              </div>
+              <!-- Content -->
+              <p class="kicker font-semibold text-accent text-center text-[11px] leading-tight mb-0.5">{stage.stage}</p>
+              <p class="timestamp text-center text-[10px] leading-snug mb-1">{stage.date}</p>
+              <p class="font-body text-[11px] text-ink leading-snug text-center mt-0.5">{stage.desc}</p>
+            </div>
+            );
+          })}
+
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Requirements -->
+  {ev.requirements && ev.requirements.length > 0 && (
+    <section class="bg-ink border-b border-white/10">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-8">
+        <div class="py-7 text-center">
+          <p class="font-display font-bold text-xl md:text-2xl tracking-[0.05em] uppercase text-white/70" data-t="event.requirementsLabel">SYARAT PENDAFTARAN</p>
+        </div>
+        <div class="pb-8 flex flex-col items-center gap-3">
+          {ev.requirements.map((req) => (
+            <div class="border border-white/15 rounded-2xl px-6 py-4 w-full max-w-2xl text-center">
+              <p class="font-body text-sm text-white/80 leading-relaxed">{req.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Judges -->
-  <section class="border-b border-black">
+  <section class="bg-white border-b border-hairline">
     <div class="max-w-[1280px] mx-auto px-4 md:px-8">
-      <Ribbon label="JURI" tKey="event.judgesLabel" />
+      <div class="py-7 text-center">
+        <p class="font-display font-bold text-xl md:text-2xl tracking-[0.05em] uppercase text-ink" data-t="event.judgesLabel">JURI</p>
+      </div>
       <div class="grid grid-cols-2 md:grid-cols-5 gap-0 py-8">
         {ev.judges.map((judge, i) => (
           <div class={[
@@ -99,24 +144,26 @@ const { event: ev } = Astro.props;
 
   <!-- Registration Form -->
   {ev.registrationOpen && (
-    <section class="border-b border-black" id="daftar">
+    <section class="bg-maroon border-b border-white/10" id="daftar">
       <div class="max-w-[1280px] mx-auto px-4 md:px-8">
-        <Ribbon label="DAFTAR AUDISI" tKey="event.registrationTitle" />
+        <div class="py-7 text-center">
+          <p class="font-display font-bold text-xl md:text-2xl tracking-[0.05em] uppercase text-white/70" data-t="event.registrationTitle">DAFTAR AUDISI</p>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-0 py-10">
-          <div class="md:border-r border-hairline md:pr-10 mb-8 md:mb-0">
-            <h2 class="font-display text-4xl text-ink mb-4" data-t="event.registrationTitle">
+          <div class="md:border-r border-white/10 md:pr-10 mb-8 md:mb-0">
+            <h2 class="font-display text-4xl text-white mb-4" data-t="event.registrationTitle">
               DAFTAR AUDISI
             </h2>
-            <p class="font-body text-sm leading-relaxed text-ink mb-6" data-t="event.registrationDesc">
+            <p class="font-body text-sm leading-relaxed text-white/70 mb-6" data-t="event.registrationDesc">
               Isi formulir di bawah untuk mendaftar audisi Jas Merah 6.
               Pendaftaran gratis dan terbuka untuk umum.
             </p>
-            <div class="flex flex-col gap-3 font-body text-sm text-ink">
-              <p class="flex items-center gap-2"><Calendar size={14} />Audisi: <strong>2 Mei 2026</strong></p>
+            <div class="flex flex-col gap-3 font-body text-sm text-white/70">
+              <p class="flex items-center gap-2"><Calendar size={14} />Audisi: <strong class="text-white">2 Mei 2026</strong></p>
               <p class="flex items-center gap-2"><MapPin size={14} />Moving Space, Kemang</p>
-              <p class="flex items-center gap-2"><Clock size={14} />Durasi materi: <strong>3 menit</strong></p>
-              <p class="flex items-center gap-2"><Tag size={14} />Pendaftaran <strong>GRATIS</strong></p>
+              <p class="flex items-center gap-2"><Clock size={14} />Durasi materi: <strong class="text-white">3 menit</strong></p>
+              <p class="flex items-center gap-2"><Tag size={14} />Pendaftaran <strong class="text-white">GRATIS</strong></p>
             </div>
           </div>
 
@@ -128,8 +175,8 @@ const { event: ev } = Astro.props;
                 Terima kasih telah mendaftar. Kami akan menghubungi kamu via WhatsApp untuk informasi selanjutnya.
               </p>
             </div>
-            <div id="form-error" class="hidden border-2 border-accent p-4 mb-6">
-              <p class="font-ui text-sm text-accent font-bold" id="error-msg" data-t="form.errorMsg">
+            <div id="form-error" class="hidden border-2 border-white/40 p-4 mb-6">
+              <p class="font-ui text-sm text-white font-bold" id="error-msg" data-t="form.errorMsg">
                 Gagal mengirim. Periksa koneksi internet kamu dan coba lagi.
               </p>
             </div>
@@ -138,7 +185,7 @@ const { event: ev } = Astro.props;
 
               <!-- Nama -->
               <div>
-                <label class="field-label" data-t="form.nama">NAMA LENGKAP</label>
+                <label class="field-label field-label-light" data-t="form.nama">NAMA LENGKAP</label>
                 <input type="text" name="nama" required class="field-input"
                        placeholder="Masukkan nama lengkap kamu"
                        data-t-placeholder="form.namaPlaceholder" />
@@ -146,7 +193,7 @@ const { event: ev } = Astro.props;
 
               <!-- WhatsApp -->
               <div>
-                <label class="field-label" data-t="form.wa">NOMOR WHATSAPP</label>
+                <label class="field-label field-label-light" data-t="form.wa">NOMOR WHATSAPP</label>
                 <input type="tel" name="whatsapp" required class="field-input"
                        placeholder="Contoh: 08123456789"
                        data-t-placeholder="form.waPlaceholder" />
@@ -154,7 +201,7 @@ const { event: ev } = Astro.props;
 
               <!-- Email -->
               <div>
-                <label class="field-label" data-t="form.email">EMAIL</label>
+                <label class="field-label field-label-light" data-t="form.email">EMAIL</label>
                 <input type="email" name="email" required class="field-input"
                        placeholder="email@kamu.com"
                        data-t-placeholder="form.emailPlaceholder" />
@@ -162,15 +209,33 @@ const { event: ev } = Astro.props;
 
               <!-- Domisili -->
               <div>
-                <label class="field-label" data-t="form.domisili">DOMISILI</label>
+                <label class="field-label field-label-light" data-t="form.domisili">DOMISILI</label>
                 <input type="text" name="domisili" required class="field-input"
                        placeholder="Kota/Kabupaten tempat tinggal"
                        data-t-placeholder="form.domisiliPlaceholder" />
               </div>
 
+              <!-- Usia -->
+              <div>
+                <label class="field-label field-label-light" data-t="form.usia">USIA</label>
+                <input type="number" name="usia" required min="10" max="99" class="field-input"
+                       placeholder="Contoh: 25"
+                       data-t-placeholder="form.usiaPlaceholder" />
+              </div>
+
+              <!-- Jenis Kelamin -->
+              <div>
+                <label class="field-label field-label-light" data-t="form.jenisKelamin">JENIS KELAMIN</label>
+                <select name="jenisKelamin" required class="field-input">
+                  <option value="">-- Pilih --</option>
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+
               <!-- Pengalaman -->
               <div>
-                <label class="field-label" data-t="form.pengalaman">PENGALAMAN STAND-UP</label>
+                <label class="field-label field-label-light" data-t="form.pengalaman">PENGALAMAN STAND-UP</label>
                 <select name="pengalaman" required class="field-input">
                   <option value="">-- Pilih --</option>
                   <option value="Belum pernah tampil">Belum pernah tampil</option>
@@ -181,7 +246,7 @@ const { event: ev } = Astro.props;
 
               <!-- Link Video -->
               <div>
-                <label class="field-label" data-t="form.linkVideo">LINK VIDEO / INSTAGRAM (OPSIONAL)</label>
+                <label class="field-label field-label-light" data-t="form.linkVideo">LINK VIDEO / INSTAGRAM (OPSIONAL)</label>
                 <input type="url" name="linkVideo" class="field-input"
                        placeholder="https://instagram.com/akunmu"
                        data-t-placeholder="form.linkVideoPlaceholder" />
@@ -189,7 +254,7 @@ const { event: ev } = Astro.props;
 
               <!-- Sumber -->
               <div>
-                <label class="field-label" data-t="form.sumber">DARI MANA KAMU TAHU JAS MERAH 6?</label>
+                <label class="field-label field-label-light" data-t="form.sumber">DARI MANA KAMU TAHU JAS MERAH 6?</label>
                 <select name="sumber" required class="field-input">
                   <option value="">-- Pilih --</option>
                   <option value="Instagram">Instagram</option>
@@ -203,7 +268,7 @@ const { event: ev } = Astro.props;
               <div class="flex items-start gap-3">
                 <input type="checkbox" name="agreement" id="agreement" required
                        class="mt-1 w-4 h-4 accent-accent flex-shrink-0" />
-                <label for="agreement" class="font-body text-sm text-ink leading-relaxed cursor-pointer"
+                <label for="agreement" class="font-body text-sm text-white/70 leading-relaxed cursor-pointer"
                        data-t="form.agreement">
                   Saya menyetujui bahwa data yang saya isi adalah benar dan bersedia mengikuti seluruh rangkaian kompetisi.
                 </label>

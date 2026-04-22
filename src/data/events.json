@@ -16,36 +16,108 @@
       {
         "stage": "AUDISI",
         "date": "2 Mei 2026",
-        "desc": "Terbuka untuk umum, target 40–50 peserta. Materi 3 menit.",
-        "descEn": "Open to the public, target 40–50 participants. 3-minute material.",
+        "desc": "Terbuka untuk umum, target 40–50 peserta. Materi bebas 3 menit.",
+        "descEn": "Open to the public, target 40–50 participants. 3-minute open material.",
         "location": "Moving Space, Kemang"
       },
       {
-        "stage": "KELAS COMEDY",
+        "stage": "PEMATERIAN",
         "date": "9 Mei 2026",
         "desc": "Kelas penulisan materi, delivery, dan komunitas untuk peserta lolos audisi.",
         "descEn": "Material writing, delivery, and community class for audition passers.",
         "location": "Moving Space, Kemang"
       },
       {
-        "stage": "SHOW 1 – SHOW 6",
-        "date": "23 Mei – 27 Juni 2026",
-        "desc": "12 finalis tampil setiap Sabtu malam. Sistem gugur dengan tema berbeda tiap show.",
-        "descEn": "12 finalists perform every Saturday night. Elimination system with different themes each show.",
+        "stage": "PEMOTRETAN",
+        "date": "14 / 15 Mei 2026",
+        "desc": "Sesi foto resmi peserta finalis untuk keperluan dokumentasi dan promosi.",
+        "descEn": "Official photo session for finalists for documentation and promotion.",
+        "location": "TBC"
+      },
+      {
+        "stage": "SHOW 1",
+        "date": "23 Mei 2026",
+        "desc": "Penampilan perdana 12 finalis.",
+        "descEn": "Opening performance of 12 finalists.",
+        "location": "Moving Space, Kemang"
+      },
+      {
+        "stage": "SHOW 2",
+        "date": "30 Mei 2026",
+        "desc": "Babak kedua kompetisi.",
+        "descEn": "Second round of competition.",
+        "location": "Moving Space, Kemang"
+      },
+      {
+        "stage": "SHOW 3",
+        "date": "6 Juni 2026",
+        "desc": "Babak ketiga kompetisi.",
+        "descEn": "Third round of competition.",
+        "location": "Moving Space, Kemang"
+      },
+      {
+        "stage": "SHOW 4",
+        "date": "13 Juni 2026",
+        "desc": "Babak keempat kompetisi.",
+        "descEn": "Fourth round of competition.",
+        "location": "Moving Space, Kemang"
+      },
+      {
+        "stage": "SHOW 5",
+        "date": "20 Juni 2026",
+        "desc": "Babak kelima kompetisi.",
+        "descEn": "Fifth round of competition.",
+        "location": "Moving Space, Kemang"
+      },
+      {
+        "stage": "SHOW 6",
+        "date": "27 Juni 2026",
+        "desc": "Babak keenam, show terakhir sebelum Grand Final.",
+        "descEn": "Sixth round, last show before Grand Final.",
         "location": "Moving Space, Kemang"
       },
       {
         "stage": "GRAND FINAL",
         "date": "1 Agustus 2026",
         "desc": "3 grand finalis terbaik. Sistem penonton berbasis ticketing.",
-        "descEn": "3 best grand finalists. Audience ticketing system.",
+        "descEn": "Top 3 grand finalists. Audience ticketing system.",
         "location": "TBC"
+      }
+    ],
+    "requirements": [
+      {
+        "text": "Warga Negara Indonesia (WNI) atau Warga Negara Asing (WNA) yang memiliki status visa kerja secara legal di Indonesia.",
+        "textEn": "Indonesian citizens (WNI) or foreign nationals (WNA) with valid work visa status in Indonesia."
+      },
+      {
+        "text": "Berusia 13–102 tahun.",
+        "textEn": "Aged 13–102 years."
+      },
+      {
+        "text": "Bukan komika dari komunitas Standupindo JABODETABEK.",
+        "textEn": "Not a comedian from the Standupindo JABODETABEK community."
+      },
+      {
+        "text": "Anggota komunitas Kampus dipersilakan selama belum bergabung regional JABODETABEK.",
+        "textEn": "Campus community members are welcome as long as they have not joined the JABODETABEK regional community."
+      },
+      {
+        "text": "Mengisi formulir pendaftaran.",
+        "textEn": "Complete the registration form."
+      },
+      {
+        "text": "Mengikuti audisi dengan membawakan materi bebas berdurasi maksimal 3 menit, dengan Bahasa Indonesia atau Inggris. (Clean / No SARA & Dirty Comedy)",
+        "textEn": "Participate in the audition with free material of up to 3 minutes, in Indonesian or English. (Clean / No SARA & Dirty Comedy)"
+      },
+      {
+        "text": "Bersedia mengikuti seluruh rangkaian kegiatan Jas Merah selama berlangsung.",
+        "textEn": "Willing to participate in all Jas Merah activities throughout the event."
       }
     ],
     "judges": [
       { "name": "Virza Logika", "credential": "Juara 2 SUCI 11 Kompas TV", "credentialEn": "Runner-up SUCI 11 Kompas TV" },
       { "name": "Popon Kerok", "credential": "Juara 1 SUCI 8 Kompas TV", "credentialEn": "Champion SUCI 8 Kompas TV" },
-      { "name": "Bonar Manalu", "credential": "Komika Nasional", "credentialEn": "National Comedian" },
+      { "name": "Bonar Manalu", "credential": "Finalis SUCI X Kompas TV", "credentialEn": "National Comedian" },
       { "name": "Andri Senopati", "credential": "Komika & Konten Kreator", "credentialEn": "Comedian & Content Creator" },
       { "name": "Sastra Silalahi", "credential": "Komika Nasional", "credentialEn": "National Comedian" }
     ]
