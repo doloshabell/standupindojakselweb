@@ -35,7 +35,7 @@ const paragraphs = article.content.split('\n\n').filter(Boolean);
       <div class="md:col-span-2 md:border-r border-hairline md:pr-12">
         <div class="aspect-[16/9] bg-ink/8 overflow-hidden mb-8 flex items-center justify-center">
           <img src={article.thumbnail} alt={article.title}
-               class="w-full h-full object-cover" loading="eager" />
+               class="w-full h-full object-contain" loading="eager" />
         </div>
 
         <div class="font-body text-base leading-relaxed text-ink flex flex-col gap-5">

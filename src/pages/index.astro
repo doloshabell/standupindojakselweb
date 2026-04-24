@@ -67,7 +67,7 @@ const featuredEvent = events[0];
           {[
             { num: '10.6K', label: 'PENGIKUT INSTAGRAM', tKey: 'about.stat1Label' },
             { num: '4×',    label: 'OPEN MIC PER BULAN', tKey: 'about.stat2Label' },
-            { num: '2021',  label: 'TAHUN BERDIRI',      tKey: 'about.stat3Label' },
+            { num: '2011',  label: 'TAHUN BERDIRI',      tKey: 'about.stat3Label' },
           ].map(stat => (
             <div class="border-l-2 border-accent pl-4">
               <p class="font-display font-semibold text-5xl text-ink leading-none">{stat.num}</p>
@@ -122,9 +122,9 @@ const featuredEvent = events[0];
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-0 py-10">
         <div class="border-r-0 md:border-r border-hairline pr-0 md:pr-10">
-          <div class="aspect-[16/9] bg-ink overflow-hidden flex items-center justify-center">
+          <div class="aspect-[16/9] overflow-hidden flex items-center justify-center">
             <img src={featuredEvent.thumbnail} alt={featuredEvent.title}
-                 class="w-full h-full object-contain p-8" loading="lazy" />
+                 class="w-full h-full object-contain" loading="lazy" />
           </div>
         </div>
 
@@ -141,7 +141,7 @@ const featuredEvent = events[0];
           </div>
           <p class="font-body text-sm leading-relaxed text-caption mb-7">{featuredEvent.description}</p>
           <div class="flex flex-wrap gap-3">
-            <a href={`/event/${featuredEvent.slug}`} class="btn-accent" data-t="event.registerCta">
+            <a href={`/event/${featuredEvent.slug}#daftar`} class="btn-accent" data-t="event.registerCta">
               DAFTAR SEKARANG
             </a>
             <a href="/event" class="btn-ghost" data-t="event.detailCta">Lihat Detail →</a>
