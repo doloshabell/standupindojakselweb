@@ -10,8 +10,8 @@ const featuredEvent = events[0];
 
 <BaseLayout title="Tentang Komunitas" description="Standupindo Jakarta Selatan — Komunitas Stand-Up Comedy Jakarta Selatan">
 
-  <!-- ─── HERO — foto komunitas + overlay maroon, center ──── -->
-  <section class="relative overflow-hidden min-h-[85vh] flex items-center justify-center">
+  <!-- ─── HERO — sticky so sections below scroll over it ──── -->
+  <section class="sticky top-0 z-0 overflow-hidden min-h-[85vh] flex items-center justify-center">
     <!-- Background photo -->
     <img src="/semuakomikajaksel.jpeg" alt=""
          class="absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
@@ -38,6 +38,9 @@ const featuredEvent = events[0];
       </div>
     </div>
   </section>
+
+  <!-- sections below scroll over the sticky hero -->
+  <div class="relative z-10">
 
   <!-- ─── TENTANG KOMUNITAS — cream ────────────────────────── -->
   <section class="bg-canvas border-b border-hairline">
@@ -180,5 +183,7 @@ const featuredEvent = events[0];
       </a>
     </div>
   </section>
+
+  </div>{/* end scroll-over wrapper */}
 
 </BaseLayout>
