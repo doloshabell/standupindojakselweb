@@ -52,7 +52,8 @@ const stageIconMap: Record<string, any> = {
       <h1 class="font-display font-extrabold text-[clamp(2.5rem,7vw,5rem)] leading-none tracking-[-2px] text-white mb-2">
         {ev.title}
       </h1>
-      <p class="font-display text-2xl text-semibold text-white/80 mb-6">{ev.subtitle}</p>
+      <p class="font-display text-2xl text-semibold text-white/80 mb-6"
+         data-id={ev.subtitle} data-en={ev.subtitleEn}>{ev.subtitle}</p>
       <div class="w-10 h-0.5 bg-white/40 mb-6"></div>
 
       <!-- Meta -->
@@ -61,7 +62,8 @@ const stageIconMap: Record<string, any> = {
         <p class="kicker text-white/80 flex items-center gap-1.5"><MapPin size={13} />{ev.location}</p>
       </div>
 
-      <p class="font-body text-base leading-relaxed text-white/90 max-w-xl">{ev.description}</p>
+      <p class="font-body text-base leading-relaxed text-white/90 max-w-xl"
+         data-id={ev.description} data-en={ev.descriptionEn}>{ev.description}</p>
     </div>
   </section>
 
@@ -90,7 +92,8 @@ const stageIconMap: Record<string, any> = {
               <!-- Content -->
               <p class="kicker font-semibold text-accent text-center text-[11px] leading-tight mb-0.5">{stage.stage}</p>
               <p class="timestamp text-center text-[10px] leading-snug mb-1">{stage.date}</p>
-              <p class="font-body text-[11px] text-ink leading-snug text-center mt-0.5">{stage.desc}</p>
+              <p class="font-body text-[11px] text-ink leading-snug text-center mt-0.5"
+                 data-id={stage.desc} data-en={stage.descEn}>{stage.desc}</p>
             </div>
             );
           })}
@@ -110,7 +113,8 @@ const stageIconMap: Record<string, any> = {
         <div class="pb-8 flex flex-col items-center gap-3">
           {ev.requirements.map((req) => (
             <div class="border border-white/15 rounded-2xl px-6 py-4 w-full max-w-2xl text-center">
-              <p class="font-body text-sm text-white/80 leading-relaxed">{req.text}</p>
+              <p class="font-body text-sm text-white/80 leading-relaxed"
+                 data-id={req.text} data-en={req.textEn}>{req.text}</p>
             </div>
           ))}
         </div>
@@ -135,7 +139,8 @@ const stageIconMap: Record<string, any> = {
               <p class="font-display text-xl text-caption">{judge.name.charAt(0)}</p>
             </div>
             <p class="font-ui text-sm font-semibold text-ink leading-tight mb-1">{judge.name}</p>
-            <p class="kicker text-caption text-center leading-snug">{judge.credential}</p>
+            <p class="kicker text-caption text-center leading-snug"
+               data-id={judge.credential} data-en={judge.credentialEn}>{judge.credential}</p>
           </div>
         ))}
       </div>
@@ -226,8 +231,9 @@ const stageIconMap: Record<string, any> = {
               <!-- Jenis Kelamin -->
               <div>
                 <label class="field-label field-label-light" data-t="form.jenisKelamin">JENIS KELAMIN</label>
-                <select name="jenisKelamin" required class="field-input">
-                  <option value="">-- Pilih --</option>
+                <select name="jenisKelamin" required class="field-input"
+                        data-t-select="form.jenisKelaminOptions">
+                  <option value="" data-t="form.selectPlaceholder">-- Pilih --</option>
                   <option value="Laki-laki">Laki-laki</option>
                   <option value="Perempuan">Perempuan</option>
                 </select>
@@ -236,8 +242,9 @@ const stageIconMap: Record<string, any> = {
               <!-- Pengalaman -->
               <div>
                 <label class="field-label field-label-light" data-t="form.pengalaman">PENGALAMAN STAND-UP</label>
-                <select name="pengalaman" required class="field-input">
-                  <option value="">-- Pilih --</option>
+                <select name="pengalaman" required class="field-input"
+                        data-t-select="form.pengalamanOptions">
+                  <option value="" data-t="form.selectPlaceholder">-- Pilih --</option>
                   <option value="Belum pernah tampil">Belum pernah tampil</option>
                   <option value="Pernah open mic 1–5 kali">Pernah open mic 1–5 kali</option>
                   <option value="Rutin tampil di open mic">Rutin tampil di open mic</option>
@@ -255,8 +262,9 @@ const stageIconMap: Record<string, any> = {
               <!-- Sumber -->
               <div>
                 <label class="field-label field-label-light" data-t="form.sumber">DARI MANA KAMU TAHU JAS MERAH 6?</label>
-                <select name="sumber" required class="field-input">
-                  <option value="">-- Pilih --</option>
+                <select name="sumber" required class="field-input"
+                        data-t-select="form.sumberOptions">
+                  <option value="" data-t="form.selectPlaceholder">-- Pilih --</option>
                   <option value="Instagram">Instagram</option>
                   <option value="Teman / Kenalan">Teman / Kenalan</option>
                   <option value="Langsung dari komunitas">Langsung dari komunitas</option>
@@ -301,8 +309,9 @@ const stageIconMap: Record<string, any> = {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
+    const lang = document.documentElement.lang || 'id';
     submitBtn!.disabled = true;
-    submitBtn!.textContent = 'MENGIRIM...';
+    submitBtn!.textContent = lang === 'en' ? 'SENDING...' : 'MENGIRIM...';
     successEl?.classList.add('hidden');
     errorEl?.classList.add('hidden');
 
@@ -324,7 +333,7 @@ const stageIconMap: Record<string, any> = {
         if (errorMsg) errorMsg.setAttribute('data-t', 'form.duplicateMsg');
         if (errorMsg) errorMsg.textContent = json.message || 'Nomor WhatsApp ini sudah terdaftar.';
         submitBtn!.disabled = false;
-        submitBtn!.textContent = 'KIRIM PENDAFTARAN';
+        submitBtn!.textContent = lang === 'en' ? 'SUBMIT REGISTRATION' : 'KIRIM PENDAFTARAN';
       } else {
         form.classList.add('hidden');
         successEl?.classList.remove('hidden');
@@ -332,9 +341,9 @@ const stageIconMap: Record<string, any> = {
       }
     } catch {
       errorEl?.classList.remove('hidden');
-      if (errorMsg) errorMsg.textContent = 'Gagal mengirim. Periksa koneksi internet kamu dan coba lagi.';
+      if (errorMsg) errorMsg.textContent = lang === 'en' ? 'Failed to send. Check your internet connection and try again.' : 'Gagal mengirim. Periksa koneksi internet kamu dan coba lagi.';
       submitBtn!.disabled = false;
-      submitBtn!.textContent = 'KIRIM PENDAFTARAN';
+      submitBtn!.textContent = lang === 'en' ? 'SUBMIT REGISTRATION' : 'KIRIM PENDAFTARAN';
     }
   });
 </script>

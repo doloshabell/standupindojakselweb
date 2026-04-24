@@ -20,7 +20,7 @@ const { komika: k } = Astro.props;
       <!-- Photo -->
       <div class="border-r-0 md:border-r border-hairline pr-0 md:pr-12 mb-8 md:mb-0">
         <div class="aspect-[16/9] bg-ink/8 flex items-center justify-center">
-          <p class="kicker text-caption">FOTO KOMIKA</p>
+          <p class="kicker text-caption" data-t="talent.photoPlaceholder">FOTO KOMIKA</p>
         </div>
       </div>
 
@@ -33,7 +33,8 @@ const { komika: k } = Astro.props;
         <div class="w-10 h-0.5 bg-accent mb-8"></div>
 
         <p class="section-label text-caption mb-3" data-t="talent.bioLabel">BIO</p>
-        <p class="font-body text-base leading-relaxed text-ink mb-10">{k.bio}</p>
+        <p class="font-body text-base leading-relaxed text-ink mb-10"
+           data-id={k.bio} data-en={k.bioEn}>{k.bio}</p>
 
         <p class="section-label text-caption mb-4" data-t="talent.socialLabel">MEDIA SOSIAL</p>
         <div class="flex flex-wrap gap-3">

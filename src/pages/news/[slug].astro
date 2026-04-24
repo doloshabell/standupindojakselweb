@@ -24,10 +24,10 @@ const paragraphs = article.content.split('\n\n').filter(Boolean);
        data-t="news.backLabel">← Kembali ke News</a>
 
     <div class="border-b border-hairline pb-8 mb-8">
-      <p class="kicker text-accent mb-3">{article.kicker}</p>
-      <h1 class="font-display font-semibold text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-[-1px] text-ink mb-4">
-        {article.title}
-      </h1>
+      <p class="kicker text-accent mb-3"
+         data-id={article.kicker} data-en={article.kickerEn}>{article.kicker}</p>
+      <h1 class="font-display font-semibold text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-[-1px] text-ink mb-4"
+          data-id={article.title} data-en={article.titleEn}>{article.title}</h1>
       <p class="timestamp">{formatDate(article.date)}</p>
     </div>
 
@@ -38,14 +38,15 @@ const paragraphs = article.content.split('\n\n').filter(Boolean);
                class="w-full h-full object-contain" loading="eager" />
         </div>
 
-        <div class="font-body text-base leading-relaxed text-ink flex flex-col gap-5">
+        <div class="font-body text-base leading-relaxed text-ink flex flex-col gap-5"
+             data-paragraphs-id={article.content} data-paragraphs-en={article.contentEn}>
           {paragraphs.map(p => <p>{p}</p>)}
         </div>
       </div>
 
       <!-- Sidebar -->
       <div class="md:pl-12 pt-10 md:pt-0">
-        <p class="section-label text-caption mb-5">ARTIKEL LAINNYA</p>
+        <p class="section-label text-caption mb-5" data-t="news.otherArticles">ARTIKEL LAINNYA</p>
         <div class="flex flex-col gap-0">
           {news
             .filter(n => n.slug !== article.slug)
@@ -53,10 +54,10 @@ const paragraphs = article.content.split('\n\n').filter(Boolean);
             .map((n, i) => (
               <a href={`/news/${n.slug}`}
                  class={`block py-4 ${i > 0 ? 'border-t border-hairline' : ''} group`}>
-                <p class="kicker text-accent mb-1">{n.kicker}</p>
-                <p class="font-ui text-sm font-semibold text-ink group-hover:text-accent transition-colors leading-tight">
-                  {n.title}
-                </p>
+                <p class="kicker text-accent mb-1"
+                   data-id={n.kicker} data-en={n.kickerEn}>{n.kicker}</p>
+                <p class="font-ui text-sm font-semibold text-ink group-hover:text-accent transition-colors leading-tight"
+                   data-id={n.title} data-en={n.titleEn}>{n.title}</p>
                 <p class="timestamp mt-1">{formatDate(n.date)}</p>
               </a>
             ))

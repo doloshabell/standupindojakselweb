@@ -31,15 +31,16 @@ function formatDate(dateStr: string) {
         </div>
 
         <div class="pl-0 md:pl-8 flex flex-col justify-center">
-          <p class="kicker text-accent mb-2">{featured.kicker}</p>
+          <p class="kicker text-accent mb-2"
+             data-id={featured.kicker} data-en={featured.kickerEn}>{featured.kicker}</p>
           <a href={`/news/${featured.slug}`} class="group">
             <h2 class="font-display text-4xl md:text-5xl text-ink leading-tight mb-4
-                       group-hover:text-accent transition-colors">
-              {featured.title}
-            </h2>
+                       group-hover:text-accent transition-colors"
+                data-id={featured.title} data-en={featured.titleEn}>{featured.title}</h2>
           </a>
           <p class="timestamp mb-4">{formatDate(featured.date)}</p>
-          <p class="font-body text-base leading-relaxed text-ink mb-6">{featured.excerpt}</p>
+          <p class="font-body text-base leading-relaxed text-ink mb-6"
+             data-id={featured.excerpt} data-en={featured.excerptEn}>{featured.excerpt}</p>
           <a href={`/news/${featured.slug}`} class="btn-primary self-start" data-t="news.readMore">
             Baca Selengkapnya →
           </a>
@@ -59,14 +60,15 @@ function formatDate(dateStr: string) {
             <img src={article.thumbnail} alt={article.title}
                  class="w-full h-full object-cover" loading="lazy" />
           </div>
-          <p class="kicker text-accent mb-1">{article.kicker}</p>
+          <p class="kicker text-accent mb-1"
+             data-id={article.kicker} data-en={article.kickerEn}>{article.kicker}</p>
           <a href={`/news/${article.slug}`}>
-            <h3 class="font-display text-2xl text-ink tile-headline transition-colors leading-tight mb-2">
-              {article.title}
-            </h3>
+            <h3 class="font-display text-2xl text-ink tile-headline transition-colors leading-tight mb-2"
+                data-id={article.title} data-en={article.titleEn}>{article.title}</h3>
           </a>
           <p class="timestamp mb-3">{formatDate(article.date)}</p>
-          <p class="font-body text-sm text-caption leading-relaxed line-clamp-3">{article.excerpt}</p>
+          <p class="font-body text-sm text-caption leading-relaxed line-clamp-3"
+             data-id={article.excerpt} data-en={article.excerptEn}>{article.excerpt}</p>
         </div>
       ))}
     </div>

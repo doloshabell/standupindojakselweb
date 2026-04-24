@@ -52,15 +52,19 @@ const featuredEvent = events[0];
               data-t="about.heading">
             KOMUNITAS YANG TUMBUH DARI PANGGUNG KECIL
           </h2>
-          <p class="font-body text-base leading-relaxed text-ink mb-4">
-            Standupindo Jakarta Selatan adalah chapter dari komunitas stand-up comedy terbesar di Indonesia.
-            Setiap Sabtu malam, puluhan komika naik panggung di Moving Space, Kemang — dari yang baru pertama
-            kali mencoba hingga yang sudah puluhan show.
-          </p>
-          <p class="font-body text-base leading-relaxed text-ink">
-            Misi kami sederhana: melahirkan komika-komika terbaik dari Jakarta Selatan dan menghibur penonton
-            dengan tawa yang jujur.
-          </p>
+          <div class="flex flex-col gap-4"
+               data-paragraphs-id={"Standupindo Jakarta Selatan adalah chapter dari komunitas stand-up comedy terbesar di Indonesia. Setiap Sabtu malam, puluhan komika naik panggung di Moving Space, Kemang — dari yang baru pertama kali mencoba hingga yang sudah puluhan show.\n\nMisi kami sederhana: melahirkan komika-komika terbaik dari Jakarta Selatan dan menghibur penonton dengan tawa yang jujur."}
+               data-paragraphs-en={"Standupindo Jakarta Selatan is a chapter of Indonesia's largest stand-up comedy community. Every Saturday night, dozens of comedians take the stage at Moving Space, Kemang — from first-timers to veterans with dozens of shows.\n\nOur mission is simple: produce the best comedians from South Jakarta and entertain audiences with honest laughter."}>
+            <p class="font-body text-base leading-relaxed text-ink">
+              Standupindo Jakarta Selatan adalah chapter dari komunitas stand-up comedy terbesar di Indonesia.
+              Setiap Sabtu malam, puluhan komika naik panggung di Moving Space, Kemang — dari yang baru pertama
+              kali mencoba hingga yang sudah puluhan show.
+            </p>
+            <p class="font-body text-base leading-relaxed text-ink">
+              Misi kami sederhana: melahirkan komika-komika terbaik dari Jakarta Selatan dan menghibur penonton
+              dengan tawa yang jujur.
+            </p>
+          </div>
         </div>
 
         <div class="pt-10 md:pt-0 md:pl-12 flex flex-col gap-7 justify-center">
@@ -97,14 +101,15 @@ const featuredEvent = events[0];
           ].join(' ')}>
             <a href={`/talent/${k.slug}`} class="block group">
               <div class="aspect-[16/9] bg-white/5 overflow-hidden mb-4 flex items-center justify-center">
-                <p class="kicker text-white/20">FOTO KOMIKA</p>
+                <p class="kicker text-white/20" data-t="talent.photoPlaceholder">FOTO KOMIKA</p>
               </div>
               <p class="kicker text-accent mb-1.5">{k.kicker}</p>
               <h3 class="font-display font-semibold text-3xl text-white leading-tight group-hover:text-accent transition-colors">
                 {k.name}
               </h3>
             </a>
-            <p class="font-body text-sm text-white/40 mt-2 line-clamp-2 leading-relaxed">{k.bio}</p>
+            <p class="font-body text-sm text-white/40 mt-2 line-clamp-2 leading-relaxed"
+               data-id={k.bio} data-en={k.bioEn}>{k.bio}</p>
           </div>
         ))}
       </div>
@@ -129,17 +134,20 @@ const featuredEvent = events[0];
         </div>
 
         <div class="pl-0 md:pl-10 pt-8 md:pt-0 flex flex-col justify-center">
-          <p class="kicker text-accent mb-2">{featuredEvent.kicker}</p>
+          <p class="kicker text-accent mb-2"
+             data-id={featuredEvent.kicker} data-en={featuredEvent.kickerEn}>{featuredEvent.kicker}</p>
           <h2 class="font-display font-semibold text-[clamp(2rem,5vw,3.5rem)] leading-none tracking-[-1px] text-ink mb-2">
             {featuredEvent.title}
           </h2>
-          <p class="font-display text-xl text-caption mb-5">{featuredEvent.subtitle}</p>
+          <p class="font-display text-xl text-caption mb-5"
+             data-id={featuredEvent.subtitle} data-en={featuredEvent.subtitleEn}>{featuredEvent.subtitle}</p>
           <div class="w-10 h-0.5 bg-hairline mb-5"></div>
           <div class="flex flex-col gap-1.5 mb-6">
             <p class="kicker text-caption flex items-center gap-1.5"><Calendar size={13} />{featuredEvent.dateRange}</p>
             <p class="kicker text-caption flex items-center gap-1.5"><MapPin size={13} />{featuredEvent.location}</p>
           </div>
-          <p class="font-body text-sm leading-relaxed text-caption mb-7">{featuredEvent.description}</p>
+          <p class="font-body text-sm leading-relaxed text-caption mb-7"
+             data-id={featuredEvent.description} data-en={featuredEvent.descriptionEn}>{featuredEvent.description}</p>
           <div class="flex flex-wrap gap-3">
             <a href={`/event/${featuredEvent.slug}#daftar`} class="btn-accent" data-t="event.registerCta">
               DAFTAR SEKARANG

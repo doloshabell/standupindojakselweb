@@ -51,6 +51,45 @@ const t = translations;
           if (val !== undefined) el.href = val;
         });
 
+        // Bilingual JSON content via data-id / data-en attributes
+        document.querySelectorAll('[data-id][data-en]').forEach(el => {
+          const val = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-id');
+          if (val !== null) el.textContent = val;
+        });
+
+        // Multi-paragraph bilingual content
+        document.querySelectorAll('[data-paragraphs-id]').forEach(el => {
+          const content = lang === 'en'
+            ? el.getAttribute('data-paragraphs-en')
+            : el.getAttribute('data-paragraphs-id');
+          if (content) {
+            el.innerHTML = '';
+            content.split('\n\n').filter(Boolean).forEach(text => {
+              const p = document.createElement('p');
+              p.textContent = text;
+              el.appendChild(p);
+            });
+          }
+        });
+
+        // Select options with data-t-select
+        document.querySelectorAll('[data-t-select]').forEach(el => {
+          const key = el.getAttribute('data-t-select');
+          const options = key.split('.').reduce((obj, k) => obj?.[k], TRANSLATIONS[lang]);
+          if (Array.isArray(options)) {
+            const placeholder = el.options[0];
+            if (placeholder) {
+              const pKey = placeholder.getAttribute('data-t');
+              if (pKey) {
+                const pVal = pKey.split('.').reduce((obj, k) => obj?.[k], TRANSLATIONS[lang]);
+                if (pVal) placeholder.textContent = pVal;
+              }
+            }
+            while (el.options.length > 1) el.remove(1);
+            options.forEach(opt => el.add(new Option(opt, opt)));
+          }
+        });
+
         localStorage.setItem('lang', lang);
         document.documentElement.lang = lang;
 
