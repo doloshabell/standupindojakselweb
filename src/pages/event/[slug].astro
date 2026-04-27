@@ -91,7 +91,12 @@ const stageIconMap: Record<string, any> = {
               </div>
               <!-- Content -->
               <p class="kicker font-semibold text-accent text-center text-[11px] leading-tight mb-0.5">{stage.stage}</p>
-              <p class="timestamp text-center text-[10px] leading-snug mb-1">{stage.date}</p>
+              <p class="timestamp text-center text-[10px] leading-snug mb-0">{stage.date}</p>
+              {stage.time && (
+                <p class="font-mono text-center text-[10px] leading-snug text-accent mb-1"
+                   data-id={stage.time} data-en={stage.timeEn}>{stage.time}</p>
+              )}
+              {!stage.time && <div class="mb-1" />}
               <p class="font-body text-[11px] text-ink leading-snug text-center mt-0.5"
                  data-id={stage.desc} data-en={stage.descEn}>{stage.desc}</p>
             </div>
